@@ -1,7 +1,7 @@
 <img src="https://raw.githubusercontent.com/danielabreo/aggiemaps/master/logo.png" alt="AggieMaps Logo" height="70" >
 
 # AggieMaps
-A routing web application for the Texas A&amp;M Bus System. Inspired by Google Maps.
+A routing web application for the Texas A&amp;M Bus System.
 
 ## Welcome to AggieMaps
 
@@ -30,4 +30,5 @@ Coordinates were collected manually using the [TAMU Transportation](http://trans
 This file contains the stops and timing information for each bus route.
 Stops and times were collected manually using the [TAMU Transportation](http://transport.tamu.edu/busroutes/) website.
 
-     coordinates.csv and routes.csv are used to populate the graph representing the bus system
+     The coordinates.csv and routes.csv files are used to populate the graph representing the bus system 
+     They provide a user-friendly interface for updating bus stop locations, routes, and timings
