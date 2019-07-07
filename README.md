@@ -18,7 +18,7 @@ Try it now! [AggieMaps](https://aggiemapsm.appspot.com)
 The following instructions give potential contributors insight to how AggieMaps
 was created.
 
-### coordinates.csv
+### [coordinates.csv](https://github.com/danielabreo/aggiemaps/blob/master/coordinates.csv)
 This file contains the geographical coordinates of each bus stop.
 Coordinates were collected manually using the [TAMU Transportation](http://transport.tamu.edu/busroutes/) website and [Google Maps](https://www.google.com/maps/).
 
@@ -26,7 +26,7 @@ Coordinates were collected manually using the [TAMU Transportation](http://trans
 - [Michael Abreo](https://www.linkedin.com/in/michaelabreo/)
 - [Alexander Labbane](https://www.instagram.com/alexlabbane/)
 
-### routes.csv
+### [routes.csv](https://github.com/danielabreo/aggiemaps/blob/master/routes.csv)
 This file contains the stops and timing information for each bus route.
 Stops and times were collected manually using the [TAMU Transportation](http://transport.tamu.edu/busroutes/) website.
 
