@@ -29,3 +29,5 @@ Coordinates were collected manually using the [TAMU Transportation](http://trans
 ### routes.csv
 This file contains the stops and timing information for each bus route.
 Stops and times were collected manually using the [TAMU Transportation](http://transport.tamu.edu/busroutes/) website.
+
+     coordinates.csv and routes.csv are used to populate the graph representing the bus system
