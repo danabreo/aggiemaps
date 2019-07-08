@@ -42,3 +42,12 @@ Stops and times were collected manually using the [TAMU Transportation](http://t
 
      The coordinates and routes files are used to populate the graph representing the bus system 
      They provide a user-friendly interface for updating bus stop locations, routes, and timings
+     
+### verifydata.py
+This python script checks the coordinates.csv and routes.csv files for correctness.
+It detects extraneous bus stops, omitted bus stops, and duplicate coordinates.
+
+#### To check your changes
+ - Please make sure you use `Python 3.x.`, `Python 2.x` is not supported currently.
+ - Place the coordinates.csv, routes.csv, and verifydata.py files in the same directory.
+ - Use `Python3` to run verifydata.py.
