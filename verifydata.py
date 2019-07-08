@@ -15,6 +15,6 @@ for i in fullrouteslist: # removes blanklines and route names
         routenames.append(i.split(',')[0])
 routeslist = list(dict.fromkeys(routenames)) # removes duplicates from list
 
-print("Not found in coordinates.csv:",(set(routeslist).difference(coordslist)))
-print("Not found in routes.csv:",(set(coordslist).difference(routeslist)))
+print("Found only in routes.csv:",(set(routeslist).difference(coordslist)))
+print("Found only in coordinates.csv:",(set(coordslist).difference(routeslist)))
 print("Duplicates in coordinates.csv:",[item for item, count in list(collections.Counter(latlnglist).items()) if count > 1])
