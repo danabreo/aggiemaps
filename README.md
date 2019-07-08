@@ -12,6 +12,15 @@ and is hosted on the Google App Engine and Heroku.
 
 Try it now! [AggieMaps](https://aggiemapsm.appspot.com)
 
+## Program Flow
+ 1. User enters starting and ending location
+ 2. Program finds the first and second closest bus stops to the starting and ending location
+ 3. Dijkstra's shortest-path algorithm is used to find 4 shortest routes:
+       - stop closest to starting point  :arrow_right:  stop closest to ending point
+       - stop 2nd closest to starting point  :arrow_right:  stop closest to ending point
+       - stop closest to starting point  :arrow_right:  stop 2nd closest to ending point
+       - stop 2nd closest to starting point  :arrow_right:  stop 2nd closest to ending point
+ 4. Program returns the best path as a JSON object
 
 ## Getting Started
 
@@ -51,13 +60,3 @@ It detects extraneous bus stops, omitted bus stops, and duplicate coordinates.
  - Please make sure you use `Python 3.x.`, `Python 2.x` is not supported currently.
  - Place the coordinates.csv, routes.csv, and verifydata.py files in the same directory.
  - Use `Python3` to run verifydata.py.
- 
- ## Program Flow
- 1. User enters starting and ending location
- 2. Program finds the first and second closest bus stops to the starting and ending location
- 3. Dijkstra's shortest-path algorithm is used to find 4 shortest routes:
-       - stop closest to starting point  :arrow_right:  stop closest to ending point
-       - stop 2nd closest to starting point  :arrow_right:  stop closest to ending point
-       - stop closest to starting point  :arrow_right:  stop 2nd closest to ending point
-       - stop 2nd closest to starting point  :arrow_right:  stop 2nd closest to ending point
- 4. Program returns the best path as a JSON object
