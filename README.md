@@ -35,9 +35,10 @@ Stops and times were collected manually using the [TAMU Transportation](http://t
 
 | [Route Name] |  |
 |:---:|:---:|
-| **[Stop 1 Name]** | **[Minutes to Stop 2]** |
-| **[Stop 2 Name]** | **[Minutes to Final Stop]** |
-| **[Final Stop]** |  |
+| **[Initial Stop]** | **[Minutes to Stop 1]** |
+| **[Stop 1 Name]** | **[Minutes to 2 Stop]** |
+| **[Stop 2 Name]** | **[Minutes to Initial Stop]** |
+| **[Initial Stop]** |  |
 
      The coordinates and routes files are used to populate the graph representing the bus system 
      They provide a user-friendly interface for updating bus stop locations, routes, and timings
