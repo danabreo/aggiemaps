@@ -22,9 +22,8 @@ was created.
 This file contains the geographical coordinates of each bus stop.
 Coordinates were collected manually using the [TAMU Transportation](http://transport.tamu.edu/busroutes/) website and [Google Maps](https://www.google.com/maps/).
 
-| **Route Name** | **Latitude** | **Longitude** |
+| [Route Name] | [Latitude in Decimal Degrees] | [Longitude in Decimal Degrees] |
 |:---:|:---:|:---:|
-| Commons | 30.615178 | -96.337378 |
 
 #### Coordinate Collecters
 - [Michael Abreo](https://www.linkedin.com/in/michaelabreo/)
@@ -34,11 +33,11 @@ Coordinates were collected manually using the [TAMU Transportation](http://trans
 This file contains the stops and timing information for each bus route.
 Stops and times were collected manually using the [TAMU Transportation](http://transport.tamu.edu/busroutes/) website.
 
-| **Stop Name** | **Time to Next Stop** |
+| [Route Name] |  |
 |:---:|:---:|
-| Commons | 3 |
-| Ross and Bizzell - OB | 2 |
-| Ross and Ireland - OB | 2 |
+| [Stop 1 Name] | [Minutes to Stop 2] |
+| [Stop 2 Name] | [Minutes to Final Stop] |
+| [Final Stop] |  |
 
      The coordinates and routes files are used to populate the graph representing the bus system 
      They provide a user-friendly interface for updating bus stop locations, routes, and timings
