@@ -12,12 +12,6 @@ and is hosted on the Google App Engine and Heroku.
 
 Try it now! [AggieMaps](https://aggiemapsm.appspot.com)
 
-## To Do List
-- [ ] Add walking connections
-- [ ] Create script to generate graph
-- [ ] Upload backend
-- [ ] Upload frontend
-
 ## Program Flow
  1. User enters starting and ending location
  2. Program finds the first and second closest bus stops to the starting and ending location
