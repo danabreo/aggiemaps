@@ -57,7 +57,14 @@ Stops and times were collected manually using the [TAMU Transportation](http://t
 
      The coordinates and routes files are used to populate the graph representing the bus system 
      They provide a user-friendly interface for updating bus stop locations, routes, and timings
-     
+
+### walk.csv
+This file contains a list of all the bus stops that should be connected by walking.
+Coordinates were collected manually using the [TAMU Transportation](http://transport.tamu.edu/busroutes/) website.
+
+| [Stop 1] | [Stop 2] | [Minutes to walk between stops] |
+|:---:|:---:|:---:|
+
 ### verifydata.py
 This python script checks the coordinates.csv and routes.csv files for correctness.
 It detects extraneous bus stops, omitted bus stops, and duplicate coordinates.
