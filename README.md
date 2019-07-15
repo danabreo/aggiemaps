@@ -49,9 +49,6 @@ Stops and times were collected manually using the [TAMU Transportation](http://t
 | **[Stop 2 Name]** | **[Minutes to Initial Stop]** |
 | **[Initial Stop]** |  |
 
-     The coordinates and routes files are used to populate the graph representing the bus system 
-     They provide a user-friendly interface for updating bus stop locations, routes, and timings
-
 ### walk.csv
 This file contains a list of all the bus stops that should be connected by walking.
 Coordinates were collected manually using the [TAMU Transportation](http://transport.tamu.edu/busroutes/) website.
@@ -59,11 +56,25 @@ Coordinates were collected manually using the [TAMU Transportation](http://trans
 | [Stop 1] | [Stop 2] | [Minutes to walk between stops] |
 |:---:|:---:|:---:|
 
+     The coordinates and routes files are used to populate the graph representing the bus system 
+     They provide a user-friendly interface for updating bus stop locations, routes, and timings
+
 ### verifydata.py
 This python script checks the coordinates.csv and routes.csv files for correctness.
 It detects extraneous bus stops, omitted bus stops, and duplicate coordinates.
 
 #### To check your changes
- - Please make sure you use `Python 3.x.`, `Python 2.x` is not supported currently.
  - Place the coordinates.csv, routes.csv, and verifydata.py files in the same directory.
- - Use `Python3` to run verifydata.py.
+ - Please make sure you use `Python 3.x.`, `Python 2.x` is not supported currently.
+ - Run verifydata.py.
+ 
+ ### generategraph.py
+This python script uses coordinates.csv, walk.csv and routes.csv to generate a graph representing the bus system.
+It first creates a graph with only bussed connections, and then adds walking connections.
+
+The graph consists of a dictionary, whose key is a stop name and value is a dictionary. The keys of this dictionary are stop names and the values are a list whose first element is the time it takes to get between the two stops and latter elements are the busses that serve that route.
+
+#### To generate a graph
+ - Place the coordinates.csv, routes.csv, walk.csv, and generategraph.py files in the same directory.
+ - Please make sure you use `Python 3.x.`, `Python 2.x` is not supported currently.
+ - Run generategraph.py.
