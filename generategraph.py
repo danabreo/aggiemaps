@@ -7,6 +7,9 @@ stops=[row.split(',')[0] for row in open("coordinates.csv",mode='r',encoding='ut
 # creates list all walking connections
 walk=[row.rstrip().split(',') for row in open("walk.csv",mode='r',encoding='utf-8-sig')]
 
+# creates list of all stop coordinates
+print([[row.rstrip().split(',')[0],float(row.rstrip().split(',')[1]),float(row.rstrip().split(',')[2])] for row in open("coordinates.csv",mode='r',encoding='utf-8-sig')]
+
 graph={}
 for line in stops:
     currentbus=0
