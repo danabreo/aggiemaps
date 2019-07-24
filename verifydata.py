@@ -1,8 +1,8 @@
 import collections
 
 # creates lists for stop names and stop coordinates, from coordinates.csv
-coordslist = [row.split(',')[0] for row in open("coordinates.csv",mode='r',encoding='utf-8-sig')]
-latlnglist = [row.split(',',1)[1].strip() for row in open("coordinates.csv",mode='r',encoding='utf-8-sig')]
+coordslist = [row.rstrip().split(',')[0] for row in open("coordinates.csv",mode='r',encoding='utf-8-sig')]
+latlnglist = [row.rstrip().split(',',1)[1].strip() for row in open("coordinates.csv",mode='r',encoding='utf-8-sig')]
 
 # creates list of all unique stop names listed in routes.csv
 routeslist = open("routes.csv",mode='r',encoding='utf-8-sig').read().splitlines()
