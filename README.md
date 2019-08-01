@@ -37,6 +37,7 @@ Coordinates were collected manually using the [TAMU Transportation](http://trans
 #### Coordinate Collecters
 - [Michael Abreo](https://www.linkedin.com/in/michaelabreo/)
 - [Alexander Labbane](https://www.instagram.com/alexlabbane/)
+- [Joseph Nguyen Ho](https://www.linkedin.com/in/josephnguyenho/)
 
 ### routes.csv
 This file contains the stops and timing information for each bus route.
