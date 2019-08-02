@@ -247,7 +247,7 @@ Commons,
 ,
 ,
 02 Replant,
-Fish Pond - OB,5
+Fish Pond - OB,6
 School of Public Health - OB,2
 02 Transit - OB,2
 Turf Lab - OB,1
@@ -260,7 +260,7 @@ Equine Center - IB,1
 Turf Lab - IB,2
 02 Transit - IB,2
 School of Public Health - IB,4
-Fish Pond - IB,
+Fish Pond - OB,
 ,
 ,
 03 Yell Practice,
@@ -279,16 +279,16 @@ Old Main,
 ,
 0305 Nights and Weekends,
 MSC,1
-Beutel,4
-Wehner N,4
+Beutel,3
+Wehner N,3
 White Creek - OB,2
 Centeq 2,1
 Lot 41/43,1
 Bush School - IB,1
 TTI - IB,1
-Ag Building - IB,6
+Ag Building - IB,1
 Reed Arena - IB,1
-Kleberg - IB,2
+Kleberg - IB,3
 MSC,
 ,
 ,
@@ -307,7 +307,7 @@ Asbury Water Tower,
 ,
 ,
 05 Bush School,
-MSC,3
+MSC,4
 Kleberg - OB,1
 Reed Arena - OB,1
 Ag Building - OB,1
@@ -319,13 +319,13 @@ Centeq 2,1
 Lot 41/43,1
 Bush School - IB,1
 TTI - IB,1
-Ag Building - IB,2
-Reed Arena - IB,2
+Ag Building - IB,1
+Reed Arena - IB,1
 Kleberg - IB,2
 MSC,
 ,
 ,
-06 12th Man,
+06 12th Man, 
 Beutel,3
 Wehner N,1
 Vet School - OB,1
@@ -340,15 +340,24 @@ Wehner S,4
 Beutel,
 ,
 ,
+07 Airport,
+Hotel/Joe Routt,6
+Wisenbaker - East,10
+Easterwood,6
+Wind Tunnel,1
+Turbolab,7
+Hotel/Joe Routt,
+,
+,
 08 Howdy,
-Beutel,6
+Beutel,3
 Kleberg - OB,1
 Reed Arena - OB,1
 Physical Education - OB,2
-North West - Park West - OB,3
-Olsen Field @ Blue Bell Park,2
-Rec Center,1
-Kleberg - IB,9
+North West - Park West - OB,2
+Olsen Field @ Blue Bell Park,1
+Rec Center - IB,1
+Kleberg - IB,4
 Beutel,
 ,
 ,
