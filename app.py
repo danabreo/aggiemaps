@@ -63,7 +63,7 @@ class Routes(Resource):
                   proceed = False
                   break
               if proceed:
-                Q[v] = [alt+4, u] # adds time for transfering busses 
+                Q[v] = [alt+2, u] # adds time for transfering busses 
                 trace[v] = u
                 stops[v] = cur
                 previous = cur
