@@ -51,7 +51,7 @@ while i < (len(routes)-1):
                     curTotal += int(stopList[k][1])-1 # favors staying on the same bus
                 else:
                     curTotal += int(stopList[k][1])
-                k  = (k+1)%len(connections)
+                k  = (k+1)%len(stopList)
             j += 1
         for stop in toAdd:
             for connection in toAdd[stop]:
