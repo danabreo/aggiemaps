@@ -30,6 +30,7 @@ class Routes(Resource):
       
       trace = dict()
       stops = dict()
+      previous = []
       
       while Q:
         u = min(Q, key=Q.get)
@@ -51,9 +52,21 @@ class Routes(Resource):
           if v in Q:
             alt = u_dist + graph[u][v][0]
             if alt < Q[v][0]:
-              Q[v] = [alt,u]
-              trace[v] = u
-              stops[v] = graph[u][v][1:]
+              cur = graph[u][v][1:]
+              proceed = True
+              for bus in cur:
+                if bus in previous or not previous:
+                  Q[v] = [alt,u]
+                  trace[v] = u
+                  stops[v] = cur
+                  previous = cur
+                  proceed = False
+                  break
+              if proceed:
+                Q[v] = [alt+4, u] # adds time for transfering busses 
+                trace[v] = u
+                stops[v] = cur
+                previous = cur
     
     start1 = 'Not Available'
     start2 = 'Not Available'
