@@ -1,5 +1,3 @@
 Flask
 Flask-RESTful
-gunicorn
-django
-django-heroku
+uwsgi
