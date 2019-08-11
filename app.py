@@ -6,10 +6,12 @@ cors = CORS(app)
 app.config['CORS_HEADERS'] = 'Content-Type'
 
 @app.route('/version')
+@cross_origin()
 def version():
     return '2.4.0 - August 11, 2019'
 
 @app.route('/routes/<string:startLat>/<string:startLng>/<string:endLat>/<string:endLng>')
+@cross_origin()
 def routes(startLat, startLng, endLat, endLng):
     startLat = float(startLat)
     startLng = float(startLng)
