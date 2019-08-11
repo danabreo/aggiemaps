@@ -6,7 +6,7 @@ api = Api(app)
 
 class Version(Resource):
     def get(self):
-        return '1.5.4 - August 11, 2019'
+        return '1.5.5 - August 11, 2019'
 
 class Routes(Resource):
     def get(self, startLat, startLng, endLat, endLng):
@@ -98,7 +98,7 @@ class Routes(Resource):
         path2 = dijkstras(graph,start2,end1)
         path3 = dijkstras(graph,start1,end2)
         path4 = dijkstras(graph,start2,end2)
-        return(jsonify({"path1":"path1"}))
+        return(jsonify({"path1":path1}))
 
 api.add_resource(Version, '/version')
 api.add_resource(Routes, '/routes/<string:startLat>/<string:startLng>/<string:endLat>/<string:endLng>')
