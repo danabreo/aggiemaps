@@ -44,25 +44,25 @@ class Routes(Resource):
                     S.reverse()
                     return S
 
-            for v in graph[u]:
-                if v in Q:
-                    alt = u_dist + graph[u][v][0]
-                    if alt < Q[v][0]:
-                        cur = graph[u][v][1:]
-                        proceed = True
-                        for bus in cur:
-                            if bus in previous or not previous:
-                                Q[v] = [alt,u]
+                for v in graph[u]:
+                    if v in Q:
+                        alt = u_dist + graph[u][v][0]
+                        if alt < Q[v][0]:
+                            cur = graph[u][v][1:]
+                            proceed = True
+                            for bus in cur:
+                                if bus in previous or not previous:
+                                    Q[v] = [alt,u]
+                                    trace[v] = u
+                                    stops[v] = cur
+                                    previous = cur
+                                    proceed = False
+                                    break
+                            if proceed:
+                                Q[v] = [alt+2, u] # adds time for transfering busses 
                                 trace[v] = u
                                 stops[v] = cur
                                 previous = cur
-                                proceed = False
-                                break
-                        if proceed:
-                            Q[v] = [alt+2, u] # adds time for transfering busses 
-                            trace[v] = u
-                            stops[v] = cur
-                            previous = cur
 
         start1 = 'Not Available'
         start2 = 'Not Available'
@@ -82,7 +82,7 @@ class Routes(Resource):
                 start1Min = start1Dist
             if end1Dist < end1Min:
                 end1 = stops[i][0]
-                end1Min = endDist
+                end1Min = end1Dist
 
         for i in range(len(stops)):
             start2Dist = ((stops[i][1] - startLat) ** 2 + (stops[i][2] - startLng) ** 2) ** 0.5
