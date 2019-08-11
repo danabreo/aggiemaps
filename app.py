@@ -1,5 +1,4 @@
-from json import dumps
-from flask import Flask, jsonify, make_response
+from flask import Flask, jsonify
 from flask_restful import Resource, reqparse, Api
 
 app = Flask(__name__)
@@ -100,7 +99,7 @@ class Routes(Resource):
         path3 = dijkstras(graph,start1,end2)
         path4 = dijkstras(grpah,start2,end2)
         path1 = [1,2,3]
-        return(make_response(dumps(path1)))
+        return(jsonify({"path1":path1}))
 
 api.add_resource(Version, '/version')
 api.add_resource(Routes, '/routes/<string:startLat>/<string:startLng>/<string:endLat>/<string:endLng>')
