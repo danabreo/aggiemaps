@@ -4,6 +4,10 @@ from flask_restful import Resource, reqparse, Api
 app = Flask(__name__)
 api = Api(app)
 
+class Version(Resource):
+  def get(self):
+    return '1.0.0 - August 10, 2019'
+
 class Coordinates(Resource):
   def(self,stop):
     stops = {}
