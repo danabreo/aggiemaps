@@ -97,7 +97,7 @@ class Routes(Resource):
         path1 = dijkstras(graph,start1,end1)
         path2 = dijkstras(graph,start2,end1)
         path3 = dijkstras(graph,start1,end2)
-        path4 = dijkstras(grpah,start2,end2)
+        path4 = dijkstras(graph,start2,end2)
         return(jsonify({"path1":"path1"}))
 
 api.add_resource(Version, '/version')
