@@ -3,15 +3,15 @@ from flask_cors import CORS, cross_origin
 
 app = Flask(__name__)
 cors = CORS(app)
-app.config['CORS_HEADERS'] = 'Content-Type'
+#app.config['CORS_HEADERS'] = 'Content-Type'
 
 @app.route('/version')
-@cross_origin()
+#@cross_origin()
 def version():
     return '2.4.0 - August 11, 2019'
 
 @app.route('/routes/<string:startLat>/<string:startLng>/<string:endLat>/<string:endLng>')
-@cross_origin()
+#@cross_origin()
 def routes(startLat, startLng, endLat, endLng):
     startLat = float(startLat)
     startLng = float(startLng)
@@ -103,6 +103,6 @@ def routes(startLat, startLng, endLat, endLng):
     path4 = dijkstras(graph,start2,end2)
     return(jsonify({"path1":path1,"path2":path2,"path3":path3,"path4":path4}))
 
-if __name__=='__main__':
-  app.run(debug=True)
+#if __name__=='__main__':
+  #app.run(debug=True)
     
