@@ -6,7 +6,7 @@ api = Api(app)
 
 class Version(Resource):
     def get(self):
-        return '2.1.0 - August 11, 2019'
+        return '2.2.0 - August 11, 2019'
 
 class Routes(Resource):
     def get(self, startLat, startLng, endLat, endLng):
@@ -94,8 +94,11 @@ class Routes(Resource):
                 end2 = stops[i][0]
                 end2Min = end2Dist
 
-        paths = [dijkstras(graph,start1,end1),dijkstras(graph,start2,end1),dijkstras(graph,start1,end2),dijkstras(graph,start2,end2)]
-        return(jsonify({min(paths, key=len)}))
+        path1 = dijkstras(graph,start1,end1)
+        path2 = dijkstras(graph,start2,end1)
+        path3 = dijkstras(graph,start1,end2)
+        path4 = dijkstras(graph,start2,end2)
+        return(jsonify({"path1":path1,"path2":path2,"path3":path3,"path4":path4}))
 
 api.add_resource(Version, '/version')
 api.add_resource(Routes, '/routes/<string:startLat>/<string:startLng>/<string:endLat>/<string:endLng>')
