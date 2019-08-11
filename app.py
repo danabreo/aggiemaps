@@ -1,5 +1,5 @@
-from flask import Flask, jsonify, request, render_template
-from flask_restful import Resource, reqparse, Api
+from flask import Flask, jsonify, request
+from flask_restful import Resource, Api
 
 app = Flask(__name__)
 api = Api(app)
