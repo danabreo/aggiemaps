@@ -1,3 +1,5 @@
-Flask==1.0.2
-Flask-RESTful==0.3.7
-gunicorn==19.9.0
+Flask
+Flask-RESTful
+gunicorn
+django
+django-heroku
