@@ -94,11 +94,8 @@ class Routes(Resource):
                 end2 = stops[i][0]
                 end2Min = end2Dist
 
-        path1 = dijkstras(graph,start1,end1)
-        path2 = dijkstras(graph,start2,end1)
-        path3 = dijkstras(graph,start1,end2)
-        path4 = dijkstras(graph,start2,end2)
-        return(jsonify({"path1":path1}))
+        paths = [dijkstras(graph,start1,end1),dijkstras(graph,start2,end1),dijkstras(graph,start1,end2),dijkstras(graph,start2,end2)]
+        return(jsonify({min(paths, key=len)}))
 
 api.add_resource(Version, '/version')
 api.add_resource(Routes, '/routes/<string:startLat>/<string:startLng>/<string:endLat>/<string:endLng>')
