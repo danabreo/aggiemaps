@@ -8,7 +8,7 @@ api = Api(app)
 
 class Version(Resource):
     def get(self):
-        return '2.2.1 - August 11, 2019'
+        return '2.2.2 - August 11, 2019'
 
 class Routes(Resource):
     def get(self, startLat, startLng, endLat, endLng):
