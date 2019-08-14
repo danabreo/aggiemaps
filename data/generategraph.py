@@ -10,6 +10,13 @@ walk=[row.rstrip().split(',') for row in open("walk.csv",mode='r',encoding='utf-
 # creates list of all stop coordinates
 print([[row.rstrip().split(',')[0],float(row.rstrip().split(',')[1]),float(row.rstrip().split(',')[2])] for row in open("coordinates.csv",mode='r',encoding='utf-8-sig')])
 
+# creates dictionary of all stop coordinates
+coordDict = {}
+for row in open("coordinates.csv",mode='r',encoding='utf-8-sig'):
+    list = row.rstrip().split(',')
+    coordDict[list[0]]=[float(list[1]),float(list[2])]
+print(coordDict)
+
 graph={}
 for line in stops:
     currentbus=0
