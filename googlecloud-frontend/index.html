@@ -1,0 +1,480 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <title>Aggie Maps</title>
+  </head>
+  <style>
+    #map {
+      height: 100%;
+      width: 100%;
+    }
+    .col-md-4 {
+      top: 0;
+      bottom: 0;
+      left: 0;
+      position: absolute;
+      overflow-y: scroll;
+    }
+    .col-md-8 {
+      top: 0;
+      bottom: 0;
+      right: 0;
+      position: absolute;
+      padding-right: 0px;
+      padding-left: 0px;
+    }
+    @media (max-width: 1000px) {
+      #map {
+        height: 700px;
+        width: screen.width;
+      }
+      .col-md-4 {
+        position: relative;
+        overflow-y: hidden;
+      }
+      .col-md-8 {
+        position: relative;
+      }
+    }
+  </style>
+  <body>
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-md-4">
+          <div class="pt-4 pb-3 text-center">
+            <h2>Aggie Maps</h2>
+          </div>
+          <form>
+              <div class="form-group" style="margin-bottom:0px;  ">
+                <label class="radio-inline pr-4"><input type="radio" id="weekdays" name="optradio" checked>&nbsp;Weekdays</label>
+                <label class="radio-inline"><input type="radio" id="weekends" name="optradio">&nbsp;Nights & Weekends</label>
+              </div>
+              <div class="form-group">
+                <input type="text" class="form-control" id="startLocation" placeholder="Start">
+              </div>
+              <div class="form-group">
+                <input type="text" class="form-control" id="endLocation" placeholder="End">
+              </div>
+          </form>
+          <div class="form-row">
+            <div class="col">
+              <div class="row">
+                <div class="col-sm-10">
+                  <span class="align-middle">Route&nbsp;1</span>
+                  <button id="b1" type="button" class="btn btn-outline-primary btn-sm">Map it</button>
+                </div>
+              </div>
+              <div class="col pb-4 pt-1" id="o1"></div>
+              <div class="row">
+                <div class="col-sm-10">
+                  <span class="align-middle">Route&nbsp;2</span>
+                  <button id="b2" type="button" class="btn btn-outline-primary btn-sm">Map it</button>
+                </div>
+              </div>
+              <div class="col pb-4 pt-1" id="o2"></div>
+              <div class="row">
+                <div class="col-sm-10">
+                  <span class="align-middle">Route&nbsp;3</span>
+                  <button id="b3" type="button" class="btn btn-outline-primary btn-sm">Map it</button>
+                </div>
+              </div>
+              <div class="col pb-4 pt-1" id="o3"></div>
+              <div class="row">
+                <div class="col-sm-10">
+                  <span class="align-middle">Route&nbsp;4</span>
+                  <button id="b4" type="button" class="btn btn-outline-primary btn-sm">Map it</button>
+                </div>
+              </div>
+              <div class="col pb-4 pt-1" id="o4"></div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-8">
+          <div id="map"></div>
+        </div>
+      </div>
+    </div>
+    <script>
+    function mapit(startLat, startLng, endLat, endLng, coords, path) {
+      var waypts = [];
+      for (var i = 0; i < coords.length; i++){
+        waypts.push({
+          location: {lat:coords[i][0],lng:coords[i][1]},
+          stopover: true
+        });
+      }
+      var marker = new google.maps.Marker({
+        map: map,
+      });
+      var walkingPath = {
+        strokeOpacity: 0,
+        icons: [{
+          icon: {
+            path: google.maps.SymbolPath.CIRCLE,
+            fillColor: '#4285F4',
+            fillOpacity: 1,
+            scale: 5,
+          },
+          offset: '5',
+          repeat: '22px'
+        }]
+      };
+      var busPath = {
+        strokeColor: '#06427e',
+        strokeWeight: 7.5
+      };
+      function makeMarker( position, icon ) {
+         new google.maps.Marker({
+          position: position,
+          map: map,
+          icon: icon,
+         });
+       };
+      var circle = {
+         path: google.maps.SymbolPath.CIRCLE,
+         fillColor: 'white',
+         fillOpacity: 1,
+         scale: 5,
+         strokeColor: 'black',
+         strokeWeight: 2.5
+      };
+      var goo = google.maps,
+        map = new goo.Map(document.getElementById('map'), {
+          mapTypeControl: false,
+          streetViewControl: false,
+          fullscreenControl: false,
+          center: {lat:30.6172107, lng: -96.3384577},
+          zoom: 16
+        });
+        App = {
+          map: map,
+          bounds: new goo.LatLngBounds(),
+          directionsService: new goo.DirectionsService(),
+          directionsDisplayStart: new goo.DirectionsRenderer({
+            suppressMarkers: true,
+            map: map,
+            preserveViewport: true,
+            polylineOptions: walkingPath
+          }),
+          directionsDisplayEnd: new goo.DirectionsRenderer({
+            suppressMarkers: true,
+            map: map,
+            preserveViewport: true,
+            polylineOptions: walkingPath
+          }),
+          directionsDisplay1: new goo.DirectionsRenderer({
+            suppressMarkers: true,
+            map: map,
+            preserveViewport: true,
+            polylineOptions: walkingPath
+          }),
+          directionsDisplay2: new goo.DirectionsRenderer({
+            suppressMarkers: true,
+            map: map,
+            preserveViewport: true,
+            polylineOptions: walkingPath
+          }),
+          directionsDisplay3: new goo.DirectionsRenderer({
+            suppressMarkers: true,
+            map: map,
+            preserveViewport: true,
+            polylineOptions: walkingPath
+          }),
+          directionsDisplay4: new goo.DirectionsRenderer({
+            suppressMarkers: true,
+            map: map,
+            preserveViewport: true,
+            polylineOptions: walkingPath
+          }),
+          directionsDisplay5: new goo.DirectionsRenderer({
+            suppressMarkers: true,
+            map: map,
+            preserveViewport: true,
+            polylineOptions: busPath
+          }),
+          directionsDisplay6: new goo.DirectionsRenderer({
+            suppressMarkers: true,
+            map: map,
+            preserveViewport: true,
+            polylineOptions: busPath
+          }),
+          directionsDisplay7: new goo.DirectionsRenderer({
+            suppressMarkers: true,
+            map: map,
+            preserveViewport: true,
+            polylineOptions: busPath
+          }),
+          directionsDisplay8: new goo.DirectionsRenderer({
+            suppressMarkers: true,
+            map: map,
+            preserveViewport: true,
+            polylineOptions: busPath
+          }),
+        },
+
+        App.directionsService.route({
+          origin: {lat:parseFloat(startLat),lng:parseFloat(startLng)},
+          destination: {lat:coords[0][0],lng:coords[0][1]},
+          travelMode: goo.TravelMode.WALKING},
+          function (result, status) {
+            if (status == google.maps.DirectionsStatus.OK) {
+              App.directionsDisplayStart.setDirections(result);
+              var leg = result.routes[ 0 ].legs[ 0 ];
+              makeMarker( leg.start_location, circle );
+              makeMarker( leg.end_location, 'https://raw.githubusercontent.com/danielabreo/aggiemaps/master/data/busicon.PNG' );
+              App.map.fitBounds(App.bounds.union(result.routes[0].bounds));
+            }
+        });
+
+        var boolArray = [true,true,true,true,true,true,true,true];
+        var walking = true;
+
+        for (var i = 0; i < waypts.length-1 ; i++){
+          var j = i+1;
+          var k = (j*2)-1;
+          if (parseInt(path[k])<0){
+            var mode = goo.TravelMode.WALKING;
+            walking = true;
+          } else {
+            var mode = goo.TravelMode.DRIVING;
+            walking = false;
+          }
+          if (boolArray[0] && walking) {
+            boolArray[0] = false;
+            App.directionsService.route({
+              origin: waypts[i].location,
+              destination: waypts[j].location,
+              travelMode: mode
+            },
+            function (result, status) {
+              if (status == google.maps.DirectionsStatus.OK) {
+                App.directionsDisplay1.setDirections(result);
+                var leg = result.routes[ 0 ].legs[ 0 ];
+                makeMarker( leg.end_location, 'https://raw.githubusercontent.com/danielabreo/aggiemaps/master/data/busicon.PNG' );
+                App.map.fitBounds(App.bounds.union(result.routes[0].bounds));
+              }
+            });
+          }
+          else if (boolArray[1] && walking) {
+            boolArray[1] = false;
+            App.directionsService.route({
+              origin: waypts[i].location,
+              destination: waypts[j].location,
+              travelMode: mode
+            },
+            function (result, status) {
+              if (status == google.maps.DirectionsStatus.OK) {
+                App.directionsDisplay2.setDirections(result);
+                var leg = result.routes[ 0 ].legs[ 0 ];
+                makeMarker( leg.end_location, 'https://raw.githubusercontent.com/danielabreo/aggiemaps/master/data/busicon.PNG' );
+                App.map.fitBounds(App.bounds.union(result.routes[0].bounds));
+              }
+            });
+          }
+          else if (boolArray[2] && walking) {
+            boolArray[2] = false;
+            App.directionsService.route({
+              origin: waypts[i].location,
+              destination: waypts[j].location,
+              travelMode: mode
+            },
+            function (result, status) {
+              if (status == google.maps.DirectionsStatus.OK) {
+                App.directionsDisplay3.setDirections(result);
+                var leg = result.routes[ 0 ].legs[ 0 ];
+                makeMarker( leg.end_location, 'https://raw.githubusercontent.com/danielabreo/aggiemaps/master/data/busicon.PNG' );
+                App.map.fitBounds(App.bounds.union(result.routes[0].bounds));
+              }
+            });
+          }
+          else if (boolArray[3] && walking) {
+            boolArray[3] = false;
+            App.directionsService.route({
+              origin: waypts[i].location,
+              destination: waypts[j].location,
+              travelMode: mode
+            },
+            function (result, status) {
+              if (status == google.maps.DirectionsStatus.OK) {
+                App.directionsDisplay4.setDirections(result);
+                var leg = result.routes[ 0 ].legs[ 0 ];
+                makeMarker( leg.end_location, 'https://raw.githubusercontent.com/danielabreo/aggiemaps/master/data/busicon.PNG' );
+                App.map.fitBounds(App.bounds.union(result.routes[0].bounds));
+              }
+            });
+          }
+          else if (boolArray[4] && !walking) {
+            boolArray[4] = false;
+            App.directionsService.route({
+              origin: waypts[i].location,
+              destination: waypts[j].location,
+              travelMode: mode
+            },
+            function (result, status) {
+              if (status == google.maps.DirectionsStatus.OK) {
+                App.directionsDisplay5.setDirections(result);
+                var leg = result.routes[ 0 ].legs[ 0 ];
+                makeMarker( leg.end_location, 'https://raw.githubusercontent.com/danielabreo/aggiemaps/master/data/busicon.PNG' );
+                App.map.fitBounds(App.bounds.union(result.routes[0].bounds));
+              }
+            });
+          }
+          else if (boolArray[5] && !walking) {
+            boolArray[5] = false;
+            App.directionsService.route({
+              origin: waypts[i].location,
+              destination: waypts[j].location,
+              travelMode: mode
+            },
+            function (result, status) {
+              if (status == google.maps.DirectionsStatus.OK) {
+                App.directionsDisplay6.setDirections(result);
+                var leg = result.routes[ 0 ].legs[ 0 ];
+                makeMarker( leg.end_location, 'https://raw.githubusercontent.com/danielabreo/aggiemaps/master/data/busicon.PNG' );
+                App.map.fitBounds(App.bounds.union(result.routes[0].bounds));
+              }
+            });
+          }
+          else if (boolArray[6] && !walking) {
+            boolArray[6] = false;
+            App.directionsService.route({
+              origin: waypts[i].location,
+              destination: waypts[j].location,
+              travelMode: mode
+            },
+            function (result, status) {
+              if (status == google.maps.DirectionsStatus.OK) {
+                App.directionsDisplay7.setDirections(result);
+                var leg = result.routes[ 0 ].legs[ 0 ];
+                makeMarker( leg.end_location, 'https://raw.githubusercontent.com/danielabreo/aggiemaps/master/data/busicon.PNG' );
+                App.map.fitBounds(App.bounds.union(result.routes[0].bounds));
+              }
+            });
+          }
+          else if (boolArray[7] && !walking) {
+            boolArray[7] = false;
+            App.directionsService.route({
+              origin: waypts[i].location,
+              destination: waypts[j].location,
+              travelMode: mode
+            },
+            function (result, status) {
+              if (status == google.maps.DirectionsStatus.OK) {
+                App.directionsDisplay8.setDirections(result);
+                var leg = result.routes[ 0 ].legs[ 0 ];
+                makeMarker( leg.end_location, 'https://raw.githubusercontent.com/danielabreo/aggiemaps/master/data/busicon.PNG' );
+                App.map.fitBounds(App.bounds.union(result.routes[0].bounds));
+              }
+            });
+          }
+        }
+
+        App.directionsService.route({
+          origin: {lat:coords[coords.length-1][0],lng:coords[coords.length-1][1]},
+          destination: {lat:parseFloat(endLat),lng:parseFloat(endLng)},
+          travelMode: goo.TravelMode.WALKING
+        },
+        function (result, status) {
+          if (status == google.maps.DirectionsStatus.OK) {
+            App.directionsDisplayEnd.setDirections(result);
+            App.map.fitBounds(App.bounds.union(result.routes[0].bounds));
+            var leg = result.routes[ 0 ].legs[ 0 ];
+            makeMarker( leg.end_location, marker );
+          }
+        });
+    }
+    function populateOutput(path,destination){
+      var o = '';
+      o += "Walk to " + path[0]+ "<br>";
+      for (var i=1; i<(path.length-1); i+=2){
+        if (path[i][0] < 0){
+          o += "Walk to <b>" + path[i+1] + "</b><br>";
+        } else {
+          o += "Take <b>" + path[i] + "</b> to <b>" + path[i+1] + "</b><br>";
+        }
+      }
+      o += "Walk to " + destination;
+      o += "<br>";
+      return o;
+    }
+    function getPath(startLat, startLng, endLat, endLng) {
+      if (document.getElementById('weekdays').checked) {
+        var url = "https://aggiemapstest.appspot.com/routes/"+startLat+"/"+startLng+"/"+endLat+"/"+endLng+"/weekdays";
+      } else {
+        var url = "https://aggiemapstest.appspot.com/routes/"+startLat+"/"+startLng+"/"+endLat+"/"+endLng+"/weekends";
+      }
+      $.ajax({
+        method: "GET",
+        cache: false,
+        url: url,
+        success: function(data) {
+          var path1 = data.path1;
+          var path2 = data.path2;
+          var path3 = data.path3;
+          var path4 = data.path4;
+
+          var destination = String(document.getElementById('endLocation').value).split(',')[0];
+
+          document.getElementById('o1').innerHTML = populateOutput(path1,destination);
+          document.getElementById('o2').innerHTML = populateOutput(path2,destination);
+          document.getElementById('o3').innerHTML = populateOutput(path3,destination);
+          document.getElementById('o4').innerHTML = populateOutput(path4,destination);
+
+          var coords1 = data.coords1
+          var coords2 = data.coords2
+          var coords3 = data.coords3
+          var coords4 = data.coords4
+
+          document.getElementById("b1").onclick = function() {mapit(startLat, startLng, endLat, endLng, coords1, path1)};
+          document.getElementById("b2").onclick = function() {mapit(startLat, startLng, endLat, endLng, coords2, path2)};
+          document.getElementById("b3").onclick = function() {mapit(startLat, startLng, endLat, endLng, coords3, path3)};
+          document.getElementById("b4").onclick = function() {mapit(startLat, startLng, endLat, endLng, coords4, path4)};
+
+        }
+      });
+    }
+    function initMap() {
+      var map = new google.maps.Map(document.getElementById('map'), {
+        mapTypeControl: false,
+        streetViewControl: false,
+        fullscreenControl: false,
+        center: {lat:30.6172107, lng: -96.3384577},
+        zoom: 16
+      });
+      var defaultBounds = new google.maps.LatLngBounds(
+        new google.maps.LatLng(30.5159362,-96.5171539),
+        new google.maps.LatLng(30.7215865,-96.2252309)
+      );
+      var startAutoComplete = new google.maps.places.Autocomplete(document.getElementById('startLocation'), {
+        bounds: defaultBounds,
+        strictBounds: true
+      });
+      google.maps.event.addListener(startAutoComplete, 'place_changed', function(){
+        var startplace = startAutoComplete.getPlace();
+        startLat = startplace.geometry.location.lat();
+        startLng = startplace.geometry.location.lng();
+        var endAutoComplete = new google.maps.places.Autocomplete(document.getElementById('endLocation'), {
+        bounds: defaultBounds,
+        strictBounds: true
+        });
+        google.maps.event.addListener(endAutoComplete, 'place_changed', function(){
+          var endplace = endAutoComplete.getPlace();
+          endLat = endplace.geometry.location.lat();
+          endLng = endplace.geometry.location.lat();
+          getPath(startLat,startLng,endplace.geometry.location.lat(),endplace.geometry.location.lng());
+        });
+      });
+    }
+    </script>
+    <script async defer
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAx36zuRZOrvL9L7baw_zRzYW2yay3Bkmg&libraries=places&callback=initMap">
+    </script>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+  </body>
+</html>
